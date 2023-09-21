@@ -35,6 +35,7 @@ public class SaleTicket {
             }
 
         },"CC").start();
+
     }
 
 }

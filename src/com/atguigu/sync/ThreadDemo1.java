@@ -3,7 +3,7 @@ class Share{
     private int number=0;
 
     public synchronized void incr() throws InterruptedException {
-          if(number!=0){
+          while (number!=0){
               this.wait();
           }
 
@@ -13,7 +13,7 @@ class Share{
 
     }
     public synchronized void decr() throws InterruptedException {
-    if(number!=1){
+    while (number!=1){
         this.wait();
     }
         number--;
@@ -33,7 +33,7 @@ public class ThreadDemo1 {
                     throw new RuntimeException(e);
                 }
             }
-        }).start();
+        },"AA").start();
         new Thread(()->{
             for (int i = 0; i < 10; i++) {
                 try {
@@ -43,6 +43,44 @@ public class ThreadDemo1 {
                 }
 
             }
-        }).start();
+        },"BB").start();
+        new Thread(()->{
+            for (int i = 0; i < 10; i++) {
+                try {
+                    share.incr();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        },"AA").start();
+        new Thread(()->{
+            for (int i = 0; i < 10; i++) {
+                try {
+                    share.decr();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        },"BB").start();
+        new Thread(()->{
+            for (int i = 0; i < 10; i++) {
+                try {
+                    share.incr();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        },"CC").start();
+        new Thread(()->{
+            for (int i = 0; i < 10; i++) {
+                try {
+                    share.decr();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        },"DD").start();
     }
 }
