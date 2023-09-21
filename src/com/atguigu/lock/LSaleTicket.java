@@ -17,16 +17,7 @@ class  Ticket{
    }finally {
        lock.unlock();
    }
-
-
-
-
-
-
-
     }
-
-
 }
 public class LSaleTicket {
     public static void main(String[] args) {
@@ -35,8 +26,7 @@ public class LSaleTicket {
             for (int i = 0; i < 40; i++) {
                 ticket.sale();
             }
-
-        },"AA");
+        },"AA").start();
     }
 
 
