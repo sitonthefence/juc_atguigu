@@ -1,6 +1,7 @@
 package com.atguigu.callable;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
@@ -21,6 +22,7 @@ class MyThread2 implements Callable<Integer>{
     }
 }
 public class Demo1 {
+
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         new Thread(new MyThread1(),"AA").start();
